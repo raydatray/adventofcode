@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 use std::error::Error;
-use std::fs::File;
-use std::io::{self, BufRead};
 use std::path::Path;
+
+use crate::util::read_lines;
 
 pub fn day1part1<P>(filename: P) -> Result<usize, Box<dyn Error>>
 where
@@ -58,14 +58,6 @@ where
     }
 
     Ok(similarity)
-}
-
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where
-    P: AsRef<Path>,
-{
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
 }
 
 fn clean_line(line: String) -> Option<(usize, usize)> {
